@@ -12,11 +12,11 @@ class IconCreator {
     private let defaults = UserDefaults.standard
     private var iconSize = NSSize(width: 18, height: 12)
     private let gapWidth = CGFloat(5)
-    private let displayGapWidth = CGFloat(15)
+    private let displayGapWidth = CGFloat(10)
     private var displayCount = 1
     
     func getIcon(for spaces: [Space]) -> NSImage {
-        iconSize.width = 18
+        iconSize.width = 10
         let spacemanStyle = SpacemanStyle(rawValue: defaults.integer(forKey: "displayStyle"))
         var icons = [NSImage]()
         
@@ -57,7 +57,7 @@ class IconCreator {
         
         for s in spaces {
             let textRect = NSRect(origin: CGPoint.zero, size: iconSize)
-            let spaceNumber = NSString(string: String(s.spaceNumber))
+            let spaceNumber = NSString(string: String((s.spaceNumber >= 10) ? s.spaceNumber % 10: s.spaceNumber))
             let image = NSImage(size: iconSize)
             
             image.lockFocus()
